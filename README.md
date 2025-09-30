@@ -1,213 +1,156 @@
-# 🎓 Student Profile Management System
+# Career Navigator Platform 🚀
 
-A full-stack web application for managing student profiles with skills, projects, and work experience. Built with FastAPI backend and Next.js frontend.
+An AI-powered job matching platform that connects students with career opportunities through intelligent profile management and matching algorithms.
 
-## 🌟 **Features**
+## ✨ Features
 
-- ✅ **User Authentication** - JWT-based secure login
-- ✅ **Role-Based Access** - Student-only profile management
-- ✅ **Profile Management** - Skills, projects, and experience editing
-- ✅ **Data Persistence** - SQLite/PostgreSQL database support
-- ✅ **Real-time Validation** - Frontend and backend validation
-- ✅ **Responsive Design** - Modern UI with Tailwind CSS
+### 🎓 Student Portal
+- **Profile Management**: Complete professional profiles with skills, projects, and experience
+- **Dashboard**: Personalized overview of career progress
+- **Smart Matching**: AI-powered job recommendations
+- **Real-time Updates**: Instant profile synchronization
 
-## 🏗️ **Architecture**
+### 👨‍💼 Admin Portal
+- **Student Management**: Create, view, and manage student accounts
+- **Analytics Dashboard**: Track platform usage and engagement
+- **User Administration**: Comprehensive user management system
 
-### **Backend (FastAPI)**
-- **Authentication**: JWT tokens with role-based access
-- **Database**: SQLAlchemy with SQLite/PostgreSQL support
-- **API**: RESTful endpoints with Pydantic validation
-- **Security**: Password hashing, CORS protection
+## 🛠️ Tech Stack
 
-### **Frontend (Next.js)**
-- **Framework**: Next.js 14 with TypeScript
-- **Styling**: Tailwind CSS
-- **State Management**: React hooks
-- **API Client**: Axios with interceptors
+### Backend
+- **FastAPI**: Modern, fast web framework for building APIs
+- **SQLAlchemy**: SQL toolkit and ORM
+- **SQLite**: Lightweight database
+- **JWT Authentication**: Secure token-based authentication
+- **bcrypt**: Password hashing and security
 
-## 🚀 **Quick Start**
+### Frontend
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework
+- **React Hot Toast**: Beautiful notifications
+- **Lucide React**: Modern icon library
 
-### **Option 1: Automated Setup**
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/career-navigator.git
-cd career-navigator
+## 🚀 Quick Start
 
-# Run the setup script
-./setup.sh
-```
+### Prerequisites
+- Node.js 18+ 
+- Python 3.11+
+- Git
 
-### **Option 2: Manual Setup**
+### Installation
 
-#### **Backend Setup**
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-cp env.example .env
-# Edit .env with your configuration
-python setup_database.py
-python main.py
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/career-navigator-platform.git
+   cd career-navigator-platform
+   ```
 
-#### **Frontend Setup**
-```bash
-cd frontend
-npm install
-cp env.example .env.local
-# Edit .env.local with your API URL
-npm run dev
-```
+2. **Backend Setup**
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   python setup_database.py
+   python main.py
+   ```
 
-## 🔧 **Configuration**
+3. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
 
-### **Backend Environment (.env)**
-```env
-SECRET_KEY=your-super-secret-jwt-key-here
-DATABASE_URL=sqlite:///./career_navigator.db
-ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001,http://localhost:3002
-```
+4. **Access the Application**
+   - Frontend: http://localhost:3003
+   - Backend API: http://localhost:8000
 
-### **Frontend Environment (.env.local)**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
+## 🔐 Default Credentials
 
-## 🗄️ **Database Options**
+### Admin Access
+- **Email**: admin@example.com
+- **Password**: admin123
 
-### **SQLite (Default - Development)**
-- ✅ No setup required
-- ✅ File-based database
-- ✅ Perfect for development
+### Student Access
+- **Email**: student@example.com
+- **Password**: password123
 
-### **PostgreSQL (Production)**
-- ✅ Better performance
-- ✅ More features
-- ⚠️ Requires database server
-
-## 🔐 **Authentication Flow**
-
-1. **User Login** → `POST /auth/login`
-2. **Server validates** → email/password
-3. **Server creates JWT** → with user info + expiration
-4. **Client stores JWT** → in localStorage
-5. **Client sends JWT** → in Authorization header
-6. **Server validates JWT** → on protected endpoints
-
-## 📊 **API Endpoints**
-
-### **Authentication**
-- `POST /auth/login` - User login
-- `POST /auth/register` - User registration
-
-### **User Profile (Protected)**
-- `GET /users/me` - Get current user profile
-- `PUT /users/me` - Update current user profile
-
-## 🎯 **Default User**
-
-For testing purposes:
-- **Email**: `student@example.com`
-- **Password**: `password123`
-- **Role**: `student`
-
-## 📁 **Project Structure**
+## 📁 Project Structure
 
 ```
-career-navigator/
-├── backend/
-│   ├── main.py              # FastAPI application
-│   ├── database.py          # Database models and connection
-│   ├── schemas.py           # Pydantic models
-│   ├── routers/
-│   │   ├── auth.py          # Authentication endpoints
-│   │   └── users.py         # User profile endpoints
-│   ├── setup_database.py    # Database initialization
-│   └── requirements.txt     # Python dependencies
-├── frontend/
+career-navigator-platform/
+├── backend/                 # FastAPI backend
+│   ├── routers/            # API route handlers
+│   ├── database.py         # Database models and utilities
+│   ├── main.py            # FastAPI application entry point
+│   └── requirements.txt    # Python dependencies
+├── frontend/               # Next.js frontend
 │   ├── src/
-│   │   ├── app/             # Next.js pages
-│   │   ├── components/      # React components
-│   │   ├── lib/             # API client
-│   │   └── types/           # TypeScript types
-│   └── package.json         # Node.js dependencies
-├── setup.sh                 # Automated setup script
-└── README.md               # This file
+│   │   ├── app/           # Next.js App Router pages
+│   │   ├── components/    # React components
+│   │   ├── lib/           # Utility functions
+│   │   └── types/         # TypeScript type definitions
+│   └── package.json       # Node.js dependencies
+└── README.md              # This file
 ```
 
-## 🧪 **Testing**
+## 🎯 Key Features
 
-### **Backend Testing**
-```bash
-# Test API endpoint
-curl http://localhost:8000/
+### 🔄 Real-time Profile Updates
+- Instant synchronization between dashboard and profile pages
+- Live data updates without page refresh
+- Optimized state management
 
-# Test login
-curl -X POST http://localhost:8000/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email": "student@example.com", "password": "password123"}'
+### 🛡️ Robust Error Handling
+- Comprehensive error sanitization
+- User-friendly error messages
+- Graceful fallback mechanisms
 
-# Test protected endpoint
-curl -X GET http://localhost:8000/users/me \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"
-```
+### 📱 Responsive Design
+- Mobile-first approach
+- Beautiful gradient backgrounds
+- Smooth animations and transitions
 
-### **Frontend Testing**
-1. Visit `http://localhost:3000`
-2. Login with default credentials
-3. Navigate to "My Profile"
-4. Test profile management features
+### 🔒 Security Features
+- JWT token-based authentication
+- Password hashing with bcrypt
+- CORS protection
+- Input validation and sanitization
 
-## 🚀 **Deployment**
+## 🚀 Deployment
 
-For production deployment, see `DEPLOYMENT_GUIDE.md` for detailed instructions using:
-- **Backend**: Railway.app or Render
-- **Frontend**: Vercel
-- **Database**: PostgreSQL
+### Backend Deployment
+The backend is configured for easy deployment with:
+- Docker support
+- Railway deployment configuration
+- Environment variable management
 
-## 🛠️ **Development**
+### Frontend Deployment
+The frontend is optimized for:
+- Vercel deployment
+- Static site generation
+- CDN optimization
 
-### **Adding New Features**
-1. **Backend**: Add endpoints in `routers/`
-2. **Frontend**: Add components in `src/components/`
-3. **Database**: Update models in `database.py`
-
-### **Database Migrations**
-```bash
-# Create new migration
-alembic revision --autogenerate -m "Description"
-
-# Apply migrations
-alembic upgrade head
-```
-
-## 📚 **Documentation**
-
-- `PROJECT_SETUP_GUIDE.md` - Detailed setup instructions
-- `DEPLOYMENT_GUIDE.md` - Production deployment guide
-- API Documentation: `http://localhost:8000/docs` (when running)
-
-## 🤝 **Contributing**
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 **License**
+## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 **Support**
+## 🙏 Acknowledgments
 
-If you encounter issues:
-1. Check the setup guide
-2. Verify environment variables
-3. Check database connection
-4. Review API documentation
+- Built with ❤️ using modern web technologies
+- Inspired by the need for better career guidance tools
+- Designed for scalability and maintainability
 
 ---
 
-**Built with ❤️ for student success! 🎓**
+**Ready to navigate your career? Start building your professional profile today!** 🎯
