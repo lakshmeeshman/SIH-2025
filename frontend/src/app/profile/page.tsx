@@ -25,10 +25,33 @@ import {
 export default function ProfilePage() {
   const [user, setUser] = useState<User | null>(null)
   const [profileData, setProfileData] = useState<UserProfileData>({})
-  const [loading, setLoading] = useState(false) // Start with false
+  const [loading, setLoading] = useState(true) // Start with true to load data
   const [saving, setSaving] = useState(false)
   const router = useRouter()
 
+  // Load user data when component mounts
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        setLoading(true)
+        const userData = await apiClient.users.getMe()
+        setUser(userData)
+        setProfileData(userData.profile_data || {})
+      } catch (error: any) {
+        const errorMessage = extractErrorMessage(error, 'Failed to load profile data')
+        toast.error(errorMessage)
+        // Redirect to login if token is invalid
+        if (error.response?.status === 401) {
+          localStorage.removeItem('token')
+          router.push('/')
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadUserData()
+  }, [router])
 
   const handleProfileUpdate = (updatedData: Partial<UserProfileData>) => {
     const sanitizedData = sanitizeData(updatedData)
@@ -58,7 +81,17 @@ export default function ProfilePage() {
     router.push('/')
   }
 
-  // Remove loading check - profile page should work immediately
+  // Show loading state while fetching data
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-white text-lg">Loading your profile...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
